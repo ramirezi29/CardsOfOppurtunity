@@ -35,7 +35,10 @@ class ScoreController {
         case 1:
             drawButton.setTitle("Draw Again", for: .normal)
         case 2:
-            drawButton.setTitle("Draw Again", for: .normal)
+            drawButton.setTitle("Play Again?", for: .normal)
+        case 3:
+            drawButton.setTitle("Play Again?", for: .normal)
+
         default:
             break
         }
@@ -49,7 +52,10 @@ class ScoreController {
         case 1:
             drawButton.setTitle("Draw Again", for: .normal)
         case 2:
-            drawButton.setTitle("Draw Again", for: .normal)
+            drawButton.setTitle("Play Again?", for: .normal)
+        case 3:
+            drawButton.setTitle("Play Again?", for: .normal)
+
         default:
             break
         }

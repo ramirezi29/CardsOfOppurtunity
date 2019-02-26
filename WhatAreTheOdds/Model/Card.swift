@@ -25,6 +25,10 @@ struct Card: Decodable {
         switch value {
         case "ACE":
             return 1
+        case "8":
+            return 8
+        case "9":
+            return 9
         case "JACK":
             return 11
         case "QUEEN":
