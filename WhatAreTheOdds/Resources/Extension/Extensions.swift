@@ -48,8 +48,10 @@ extension UIImageView {
     func stopRotating() {
         let kAnimationKey = "rotationAnimation"
         
-        if self.layer.animation(forKey: kAnimationKey) != nil {
-            self.layer.removeAnimation(forKey: kAnimationKey)
+            DispatchQueue.main.async {
+                if self.layer.animation(forKey: kAnimationKey) != nil {
+                self.layer.removeAnimation(forKey: kAnimationKey)
+            }
         }
     }
     
