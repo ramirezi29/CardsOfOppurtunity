@@ -23,7 +23,7 @@ class IRButton: UIButton {
     private func setupButton() {
         setTitleColor(.black, for: .normal)
         backgroundColor = ColorController.buttonColor.value
-        titleLabel?.font = .boldSystemFont(ofSize: 17)
+        titleLabel?.font = .boldSystemFont(ofSize: 24)
         layer.cornerRadius = frame.size.height / 4
     }
 }
