@@ -13,17 +13,15 @@ class GameBoardVC: UIViewController{
     
     // MARK: - I disccounted the visual Blurr
     
-    @IBOutlet weak var betDoneButton: UIButton!
     @IBOutlet var betView: UIView!
-    
+    @IBOutlet weak var betDoneButton: IRButton!
+    @IBOutlet weak var drawButton: IRButton!
     @IBOutlet weak var betTextLabel: UILabel!
     @IBOutlet weak var winnerLabel: UILabel!
-    
-    @IBOutlet weak var playerOneCardImage: UIImageView!
     @IBOutlet weak var playerNameOneLabel: UILabel!
     @IBOutlet weak var playerNameTwoLabel: UILabel!
+    @IBOutlet weak var playerOneCardImage: UIImageView!
     @IBOutlet weak var playerTwoCardImage: UIImageView!
-    
     @IBOutlet weak var playerTwoScoreLabel: UILabel!
     @IBOutlet weak var playerOneScoreLabel: UILabel!
     
@@ -31,16 +29,10 @@ class GameBoardVC: UIViewController{
     @IBOutlet weak var p2DummyCard1Image: UIImageView!
     @IBOutlet weak var p2DummyCard2Image: UIImageView!
     @IBOutlet weak var p2DummyCard3Image: UIImageView!
-    
     // Player one dummy cards
     @IBOutlet weak var p1DummyCard1Image: UIImageView!
     @IBOutlet weak var p1DummyCard2Image: UIImageView!
     @IBOutlet weak var p1DummyCard3Image: UIImageView!
-    
-    // Draw Reset Button
-    @IBOutlet weak var drawButton: IRButton!
-    
-    let backOfCardImage = UIImage(named: "backOfCard")
     
     var playerOneName: String?
     var playerTWoName: String?
@@ -53,12 +45,24 @@ class GameBoardVC: UIViewController{
     var resetGameBoard = false
     var screenTapped = false
     
+    let backOfCardImage = UIImage(named: "backOfCard")
+    
     let networkErrorAlert = AlertController.presentAlertControllerWith(alertTitle: "Error Getting Your Cards", alertMessage: "Ensure you are connected to the internet and try again", dismissActionTitle: "OK")
     
     // Hides the phone's status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    //    func presentNetworkErrorAlertFunc() {
+    //
+    //        let networkErrorAlert = AlertController.presentAlertControllerWith(alertTitle: "Error Getting Your Cards", alertMessage: "Ensure you are connected to the internet and try again", dismissActionTitle: "OK")
+    //        let imageView = UIImageView(frame: CGRect(x: 220, y: 10, width: 50, height: 50))
+    //        imageView.image = UIImage(named: "warning")
+    //
+    //        networkErrorAlert.view.addSubview(imageView)
+    //        self.present(networkErrorAlert, animated: true)
+    //    }
     
     // MARK: - Life Cyles
     
@@ -139,9 +143,6 @@ class GameBoardVC: UIViewController{
         if screenTapped == false {
             screenTapped = true
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            var prefersStatusBarHidden: Bool {
-                return false
-            }
         } else {
             screenTapped = false
             self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -319,7 +320,7 @@ class GameBoardVC: UIViewController{
         
         switch unwrappedPlayerTwoName {
         case "":
-            playerNameTwoLabel.text = "🔥 Player Two"
+            playerNameTwoLabel.text = "Player Two"
         default:
             playerNameTwoLabel.text = unwrappedPlayerTwoName
         }
@@ -456,17 +457,16 @@ extension GameBoardVC {
             DispatchQueue.main.async {
                 self.hideDummyCards()
                 self.showPlayersMainCards()
-                
                 self.showPlayerScoreLabels()
-                
                 self.showPlayerNameLabels()
-                
+                self.UserOneAndTwoBlackLabelColorUI()
                 //Future features
                 //self.startAnimatingCardXX()
             }
             self.fetchNewCard()
         }else {
             resetGameBoard = false
+            self.UserOneAndTwoBlackLabelColorUI()
             
             if self.playerOneName == "" {
                 self.playerNameOneLabel.text = "Player One"
@@ -477,9 +477,9 @@ extension GameBoardVC {
             if self.playerTWoName == "" {
                 self.playerTWoName = "Player Two"
             } else {
-                
                 self.playerNameTwoLabel.text = "\(self.playerTWoName ?? "🗑 Player Two")"
             }
+            
             self.p1HasSelectedCard = false
             self.p2HasSelectedCard = false
             self.drawButton.isUserInteractionEnabled = false
@@ -501,7 +501,6 @@ extension GameBoardVC {
             
             if (successfullCard != nil) {
                 
-                // if successful
                 CardController.fetchImagesFor(card: (successfullCard![0] ), completion: { (playerOneCardImage, error) in
                     
                     if (successfullCard != nil) {
@@ -517,6 +516,8 @@ extension GameBoardVC {
                                 } else {
                                     // Future Feature wiht Sping Animation
                                     //self.stopAnimatingCardXX()
+//                                    self.playerCardsBackSide()
+                                    
                                     self.present(self.networkErrorAlert, animated: true, completion: nil)
                                 }
                             }
@@ -525,6 +526,8 @@ extension GameBoardVC {
                         DispatchQueue.main.async {
                             // Future Feature wiht Sping Animation
                             //self.stopAnimatingCardXX()
+//                            self.playerCardsBackSide()
+                            
                             self.present(self.networkErrorAlert, animated: true, completion: nil)
                         }
                     }
@@ -534,12 +537,10 @@ extension GameBoardVC {
                     
                     if  successfullCard![0].rank > successfullCard![1].rank
                     {
-//                        print("👠 Card 0: \(successfullCard![0].value) > Card 1: \(successfullCard![1].value)")
+                        //print("👠 Card 0: \(successfullCard![0].value) > Card 1: \(successfullCard![1].value)")
                         
                         ScoreController.shared.playerOneScore += 1
                         DispatchQueue.main.async {
- //🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
- //🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
                             self.userOneWonUpdateViewsLabel()
                             // Future Feature wiht Sping Animation
                             //self.stopAnimatingCardXX()
@@ -562,7 +563,7 @@ extension GameBoardVC {
                         //Test Print
                         //print("👗 Card 0:  \(successfullCard![0].value) < Card 1:  \(successfullCard![1].value)")
                         ScoreController.shared.playerTwoScore += 1
-                        
+                        //👗 👗 👗 👗 👗 👗 👗 👗 👗 👗 👗 👗 👗
                         DispatchQueue.main.async {
                             self.userTwoWonUpdateViewsLabel()
                             
@@ -596,24 +597,28 @@ extension GameBoardVC {
                         //self.stopAnimatingCardXX()
                         DispatchQueue.main.async {
                             self.drawButton.setTitle("Tie, Draw Again", for: .normal)
+                            self.UserOneAndTwoBlackLabelColorUI()
                             self.playerNameTwoLabel.text = "Tie"
                             self.playerNameOneLabel.text = "Tie"
                         }
                     }
-                
+                    
                 })
             } else {
-                // if failed fetching two cards
+                
+                // MARK: - if failed fetching two cards
+                
                 DispatchQueue.main.async {
                     // Future Feature wiht Sping Animation
                     //self.stopAnimatingCardXX()
+//                    self.playerCardsBackSide()
                     self.present(self.networkErrorAlert, animated: true, completion: nil)
+                    
                 }
             }
         }
     }
 }
-
 
 // MARK: - aniamtions
 extension GameBoardVC {
@@ -681,8 +686,6 @@ extension GameBoardVC {
             
             DispatchQueue.main.async {
                 self.animateInBetView()
-//🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
-//🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
                 self.userOneWonUpdateViewsLabel()
                 
                 self.hidePlayerScoreLabels()
@@ -711,7 +714,6 @@ extension GameBoardVC {
             DispatchQueue.main.async {
                 self.animateInBetView()
                 self.userTwoWonUpdateViewsLabel()
-                
                 self.drawButton.setTitle("Play Again?", for: .normal)
                 self.hidePlayerScoreLabels()
                 self.playerTwoScoreLabel.text = "0"
@@ -729,35 +731,34 @@ extension GameBoardVC {
     
     func userOneWonUpdateViewsLabel() {
         UserOneWonLabelColorUI()
+        switch playerTWoName {
+        case "":
+            self.playerNameTwoLabel.text = "Player Two Lost"
+        default:
+            self.playerNameTwoLabel.text = "\(playerTWoName ?? "Player Two") Lost"
+        }
         switch playerOneName {
         case "":
-            self.playerNameOneLabel.text = "👻Player One Won"
+            self.playerNameOneLabel.text = "Player One Won"
         default:
-            self.playerNameOneLabel.text = "👻👻\(playerOneName ?? "Player One") Won"
-            
-            switch playerTWoName {
-            case "":
-                self.playerNameTwoLabel.text = "👻👻👻Player Two Lost"
-            default:
-                self.playerNameTwoLabel.text = "👻👻👻👻\(playerTWoName ?? "Player Two") Lost"
-            }
+            self.playerNameOneLabel.text = "\(playerOneName ?? "Player One") Won"
         }
     }
     
     func userTwoWonUpdateViewsLabel(){
         UserTWOWonColorUI()
+        switch playerOneName {
+        case "":
+            self.playerNameOneLabel.text = "Player One Lost"
+        default:
+            self.playerNameOneLabel.text = "\(playerOneName ?? "Player One") Lost"
+        }
+        
         switch playerTWoName {
         case "":
-            self.playerNameTwoLabel.text = "🐶Player Two Won"
+            self.playerNameTwoLabel.text = "Player Two Won"
         default:
-            self.playerNameTwoLabel.text = "🐶🐶\(playerTWoName ?? "Player Two") Won"
-            
-            switch playerOneName {
-            case "":
-                self.playerNameOneLabel.text = "🐶🐶🐶Player One Lost"
-            default:
-                self.playerNameOneLabel.text = "🐶🐶🐶🐶\(playerOneName ?? "Player One") Lost"
-            }
+            self.playerNameTwoLabel.text = "\(playerTWoName ?? "Player Two") Won"
         }
     }
     
@@ -765,14 +766,30 @@ extension GameBoardVC {
     
     // Player One Won
     func UserOneWonLabelColorUI(){
-        self.playerNameOneLabel.textColor = ColorController.green.value
-        self.playerNameTwoLabel.textColor = ColorController.red.value
+        DispatchQueue.main.async {
+            self.playerNameOneLabel.textColor = ColorController.green.value
+            self.playerNameTwoLabel.textColor = ColorController.red.value
+        }
     }
     
     // Player Two Won
     func UserTWOWonColorUI(){
-        self.playerNameTwoLabel.textColor = ColorController.green.value
-        self.playerNameOneLabel.textColor = ColorController.red.value
+        DispatchQueue.main.async {
+            self.playerNameTwoLabel.textColor = ColorController.green.value
+            self.playerNameOneLabel.textColor = ColorController.red.value
+        }
+    }
+    
+    func UserOneAndTwoBlackLabelColorUI() {
+        DispatchQueue.main.async {
+            self.playerNameOneLabel.textColor = .black
+            self.playerNameTwoLabel.textColor = .black
+        }
+    }
+    
+    func playerCardsBackSide() {
+        self.playerOneCardImage.image = backOfCardImage
+        self.playerTwoCardImage.image = backOfCardImage
     }
 }
 
@@ -792,35 +809,37 @@ extension GameBoardVC {
 //}
 
 // NOTE: - Future Version
-
-//    func userOneWonBet() {
-//        self.hidePlayerNameLabels()
-//        let unwrappedBetText = self.bet ?? "the odds were aginst you"
-//        switch unwrappedBetText {
-//        case "":
-//            if self.playerOneName == "" {
-//                self.betTextLabel.text = "Player Two lost, the odds were aginst you."
-//            } else {
-//                self.betTextLabel.text = "\(self.playerTWoName ?? "Player Two") \(unwrappedBetText)"
-//            }
-//        default:
-//            break
+//func playerOneWonBet() {
+//    self.hidePlayerNameLabels()
+//    let unwrappedBetText = self.bet ?? "the odds were aginst you"
+//    switch unwrappedBetText {
+//    case "":
+//        if self.playerOneName == "" {
+//            self.betTextLabel.text = "Player Two lost, the odds were aginst you."
+//        } else {
+//            self.betTextLabel.text = "\(self.playerTWoName ?? "Player Two") \(unwrappedBetText)"
 //        }
+//    default:
+//        break
 //    }
+//}
 //
 //
-//    func userTwoWonBet() {
-//        self.hidePlayerNameLabels()
+//func playerTwoWonBet() {
+//    self.hidePlayerNameLabels()
 //
-//        let unwrappedBetText = self.bet ?? "the odds were aginst you"
-//        switch unwrappedBetText {
-//        case "":
-//            if self.playerOneName == "" {
-//                self.betTextLabel.text = "Player One lost, the odds were aginst you."
-//            } else {
-//                self.betTextLabel.text = "\(self.playerOneName ?? "Player Two") \(unwrappedBetText)"
-//            }
-//        default:
-//            break
+//    let unwrappedBetText = self.bet ?? "the odds were aginst you"
+//    switch unwrappedBetText {
+//    case "":
+//        if self.playerOneName == "" {
+//            self.betTextLabel.text = "Player One lost, the odds were aginst you."
+//        } else {
+//            self.betTextLabel.text = "\(self.playerOneName ?? "Player Two") \(unwrappedBetText)"
 //        }
+//    default:
+//        break
 //    }
+//}
+//var prefersStatusBarHidden: Bool {
+//    return false
+//}
