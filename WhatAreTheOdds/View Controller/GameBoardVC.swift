@@ -53,9 +53,6 @@ class GameBoardVC: UIViewController{
     var resetGameBoard = false
     var screenTapped = false
     
-    var p1RawScore = 0
-    var p2RawScore = 0
-    
     let networkErrorAlert = AlertController.presentAlertControllerWith(alertTitle: "Error Getting Your Cards", alertMessage: "Ensure you are connected to the internet and try again", dismissActionTitle: "OK")
     
     // Hides the phone's status bar
@@ -74,13 +71,15 @@ class GameBoardVC: UIViewController{
         betView.layer.cornerRadius = 5
         
         //Winner
+        winnerLabel.backgroundColor = ColorController.winnerLabelGreen.value
+        winnerLabel.layer.cornerRadius = 4
         winnerLabel.isHidden = true
         
         // Label Names Update
         updateViews()
         
         //Cards Appear
-        cardDecksAppear()
+        dummyCardDecksAppear()
         
         // Score
         playerOneScoreLabel.text = "\(0)"
@@ -148,7 +147,6 @@ class GameBoardVC: UIViewController{
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }
-    
     
     // Player 1 Dummy Card Taps
     @objc func p1c1Tapped(card1: UITapGestureRecognizer) {
@@ -291,21 +289,26 @@ class GameBoardVC: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideDummyCardsWithAlpha()
-        
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        // NOTE: - In order to reset the score board under the hood
+        ScoreController.shared.playerOneScore = 0
+        ScoreController.shared.playerTwoScore = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // MARK: - Animation
-        cardDecksAppear()
+        dummyCardDecksAppear()
         drawButtonAppears()
     }
     
     func updateViews() {
+        
         guard let unwrappedPlayerOneName = playerOneName,
-            let unwrappedPlayerTwoName = playerTWoName else {return}
+            let unwrappedPlayerTwoName = playerTWoName,
+            let betOnTheTable = bet else {return}
         
         switch unwrappedPlayerOneName {
         case "":
@@ -316,25 +319,33 @@ class GameBoardVC: UIViewController{
         
         switch unwrappedPlayerTwoName {
         case "":
-            playerNameTwoLabel.text = "Player Two"
+            playerNameTwoLabel.text = "🔥 Player Two"
         default:
             playerNameTwoLabel.text = unwrappedPlayerTwoName
         }
         
-//        let unwrappedBetText = bet
-//        switch unwrappedBetText {
-//        case "":
-//            betTextLabel.text = "The odds were aginst you"
-//        default:
-//            betTextLabel.text = "Player \(unwrappedBetText)"
-//        }
+        switch betOnTheTable {
+        case "":
+            betTextLabel.text = "The odds were not in your favor, you lost."
+        default:
+            betTextLabel.text = betOnTheTable
+        }
     }
     
     // MARK: - Actions
     
-    @IBAction func betDoneButtonTapped(_ sender: Any) {
+    @IBAction func betDoneButtonTapped(_ sender: IRButton) {
         animateOutOfBetView()
     }
+    
+    func betButtonUI() {
+        betDoneButton.layer.borderWidth = 4
+        betDoneButton.layer.borderColor = UIColor.black.cgColor
+        betDoneButton.layer.cornerRadius = betDoneButton.frame.height / 4
+    }
+    
+    
+    // MARK: - Bet View
     
     func animateOutOfBetView() {
         UIView.animate(withDuration: 0.3, animations: {
@@ -345,16 +356,11 @@ class GameBoardVC: UIViewController{
         }
     }
     
-    func betButtonUI() {
-        betDoneButton.layer.borderWidth = 4
-        betDoneButton.layer.borderColor = UIColor.cyan.cgColor
-        betDoneButton.layer.cornerRadius = betDoneButton.frame.height / 4
-    }
-    
-    // Visual Effect
-    func animateInVisualEffect() {
-        
+    func animateInBetView() {
         self.view.addSubview(self.betView)
+        self.betView.backgroundColor = ColorController.betViewColor.value
+        self.betView.layer.borderWidth = 4
+        self.betView.layer.borderColor = UIColor.black.cgColor
         self.betView.center = self.view.center
         
         self.betView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
@@ -366,24 +372,9 @@ class GameBoardVC: UIViewController{
         }
     }
     
-    func p1SelectedCardCheker() {
-        switch p1HasSelectedCard {
-        case false:
-            p1HasSelectedCard = true
-        case true:
-            p1HasSelectedCard = false
-        }
-    }
+    // MARK: - Show and hide objects
     
-    func p2SelectedCardCheker() {
-        switch p2HasSelectedCard {
-        case false:
-            p2HasSelectedCard = true
-        case true :
-            p2HasSelectedCard = false
-        }
-    }
-    
+    // Main cards
     func hidePlayersMainCards() {
         self.playerOneCardImage.isHidden = true
         self.playerTwoCardImage.isHidden = true
@@ -393,6 +384,30 @@ class GameBoardVC: UIViewController{
         self.playerOneCardImage.isHidden = false
         self.playerTwoCardImage.isHidden = false
     }
+    
+    // Score label
+    func hidePlayerScoreLabels() {
+        self.playerOneScoreLabel.isHidden = true
+        self.playerTwoScoreLabel.isHidden = true
+    }
+    
+    func showPlayerScoreLabels() {
+        self.playerOneScoreLabel.isHidden = false
+        self.playerTwoScoreLabel.isHidden = false
+    }
+    
+    // Player name Label
+    func showPlayerNameLabels() {
+        self.playerNameOneLabel.isHidden = false
+        self.playerNameTwoLabel.isHidden = false
+    }
+    
+    func hidePlayerNameLabels() {
+        self.playerNameOneLabel.isHidden = false
+        self.playerNameTwoLabel.isHidden = false
+    }
+    
+    // Dummy card decks
     
     func hideDummyCards(){
         self.p1DummyCard1Image.isHidden = true
@@ -441,9 +456,12 @@ extension GameBoardVC {
             DispatchQueue.main.async {
                 self.hideDummyCards()
                 self.showPlayersMainCards()
-                self.playerOneScoreLabel.isHidden = false
-                self.playerTwoScoreLabel.isHidden = false
                 
+                self.showPlayerScoreLabels()
+                
+                self.showPlayerNameLabels()
+                
+                //Future features
                 //self.startAnimatingCardXX()
             }
             self.fetchNewCard()
@@ -460,18 +478,17 @@ extension GameBoardVC {
                 self.playerTWoName = "Player Two"
             } else {
                 
-                self.playerNameTwoLabel.text = "\(self.playerTWoName ?? "Player Two")"
+                self.playerNameTwoLabel.text = "\(self.playerTWoName ?? "🗑 Player Two")"
             }
             self.p1HasSelectedCard = false
             self.p2HasSelectedCard = false
             self.drawButton.isUserInteractionEnabled = false
-            self.playerOneScoreLabel.isHidden = false
-            self.playerTwoScoreLabel.isHidden = false
+            self.showPlayerScoreLabels()
             self.winnerLabel.isHidden = true
             self.drawButton.setTitle("Select Your Cards", for: .normal)
             self.hidePlayersMainCards()
             self.showDummyCards()
-            self.cardDecksAppear()
+            self.dummyCardDecksAppear()
         }
     }
 }
@@ -494,18 +511,20 @@ extension GameBoardVC {
                             DispatchQueue.main.async {
                                 if (successfullCard != nil) {
                                     
-                                    self.playerOneCardImage.image = playerTwoCardImage
+                                    self.playerOneCardImage.image = playerOneCardImage
                                     
-                                    self.playerTwoCardImage.image = playerOneCardImage
+                                    self.playerTwoCardImage.image = playerTwoCardImage
                                 } else {
-                                    self.stopAnimatingCardXX()
+                                    // Future Feature wiht Sping Animation
+                                    //self.stopAnimatingCardXX()
                                     self.present(self.networkErrorAlert, animated: true, completion: nil)
                                 }
                             }
                         })
                     } else {
                         DispatchQueue.main.async {
-                            self.stopAnimatingCardXX()
+                            // Future Feature wiht Sping Animation
+                            //self.stopAnimatingCardXX()
                             self.present(self.networkErrorAlert, animated: true, completion: nil)
                         }
                     }
@@ -513,113 +532,81 @@ extension GameBoardVC {
                     
                     // MARK: -  Outcome P1 Won
                     
-                    
-                    if  successfullCard![0].value > successfullCard![1].value
+                    if  successfullCard![0].rank > successfullCard![1].rank
                     {
-                        print("👠 Card 0: \(successfullCard![0].value) > Card 1: \(successfullCard![1].value)")
+//                        print("👠 Card 0: \(successfullCard![0].value) > Card 1: \(successfullCard![1].value)")
+                        
+                        ScoreController.shared.playerOneScore += 1
                         DispatchQueue.main.async {
-                            self.userOneWon()
-                            self.stopAnimatingCardXX()
+ //🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
+ //🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
+                            self.userOneWonUpdateViewsLabel()
+                            // Future Feature wiht Sping Animation
+                            //self.stopAnimatingCardXX()
                             
-                            ScoreController.shared.playerOneScore += 1
                             self.playerOneScoreLabel.text = "\(ScoreController.shared.playerOneScore)"
+                            
                             ScoreController.drawAgainP1(playerOneScore: ScoreController.shared.playerOneScore, drawButton: self.drawButton, winnerLabel: self.winnerLabel)
+                            
                             ScoreController.drawAgainP2(playerTwoScore: ScoreController.shared.playerOneScore, drawButton: self.drawButton, winnerLabel: self.winnerLabel)
                             
+                            DispatchQueue.main.async {
+                                self.playerOneWonChecker()
+                            }
                         }
                         print("\nPlayer #1 won\n")
                         
-                        print("\nPlayer One raw score: \(self.p1RawScore)\n")
-                        
                         // MARK: - Outcome P2 Won
                         
-                    } else if successfullCard![0].value < successfullCard![1].value {
-                        print("👗 Card 0:  \(successfullCard![0].value) < Card 1:  \(successfullCard![1].value)")
+                    } else if successfullCard![0].rank < successfullCard![1].rank {
+                        //Test Print
+                        //print("👗 Card 0:  \(successfullCard![0].value) < Card 1:  \(successfullCard![1].value)")
                         ScoreController.shared.playerTwoScore += 1
                         
                         DispatchQueue.main.async {
-                            self.userTwoWon()
-                            self.stopAnimatingCardXX()
+                            self.userTwoWonUpdateViewsLabel()
                             
-
+                            //Future Feature
+                            //self.stopAnimatingCardXX()
+                            
                             self.playerTwoScoreLabel.text = "\(ScoreController.shared.playerTwoScore)"
                             
                             ScoreController.drawAgainP1(playerOneScore: ScoreController.shared.playerTwoScore, drawButton: self.drawButton, winnerLabel: self.winnerLabel)
                             
                             ScoreController.drawAgainP2(playerTwoScore: ScoreController.shared.playerTwoScore, drawButton: self.drawButton, winnerLabel: self.winnerLabel)
                         }
+                        
+                        DispatchQueue.main.async {
+                            self.playerTwoWonChecker()
+                        }
+                        
                         print("\nplayer #2 won\n")
                         print("\nPlayer Two raw score: \(ScoreController.shared.playerTwoScore)\n")
                         
                         // MARK: - Outcome Tie
                         
-                    } else if successfullCard![0].value == successfullCard![1].value {
-                        print("🧶Card 0: \(successfullCard![0].value) == Card 1:  \(successfullCard![1].value)")
-                        ScoreController.shared.playerTwoScore += 0
-                        ScoreController.shared.playerTwoScore += 0
-                        self.stopAnimatingCardXX()
+                    } else if successfullCard![0].rank == successfullCard![1].rank {
+                        
+                        //Test print
+                        //print("🧶Card 0: \(successfullCard![0].value) == Card 1:  \(successfullCard![1].value)")
+                        //ScoreController.shared.playerTwoScore += 0
+                        //ScoreController.shared.playerTwoScore += 0
+                        
+                        // Future Feature wiht Sping Animation
+                        //self.stopAnimatingCardXX()
                         DispatchQueue.main.async {
                             self.drawButton.setTitle("Tie, Draw Again", for: .normal)
                             self.playerNameTwoLabel.text = "Tie"
                             self.playerNameOneLabel.text = "Tie"
                         }
-                        print("Tie")
                     }
-                    
-                    if ScoreController.shared.playerOneScore == 2 {
-
-                        ScoreController.shared.playerOneScore = 0
-                        ScoreController.shared.playerTwoScore = 0
-                        DispatchQueue.main.async {
-      
-                            self.playerOneScoreLabel.isHidden = true
-                            self.playerTwoScoreLabel.isHidden = true
-                            self.playerOneScoreLabel.text = "0"
-                            self.playerTwoScoreLabel.text = "0"
-                            self.drawButton.titleLabel?.text = "Play Again?"
-                            self.userOneWonBet()
-                            self.animateInVisualEffect()
-                            self.userTwoWon()
-                            
-                            if self.playerOneName == "" {
-                                self.winnerLabel.text =  "Player One Won!"
-                                self.drawButton.titleLabel?.text = "Play Again?"
-                            } else {
-                                self.winnerLabel.text = "\(self.playerOneName ?? "Player One") Won!"
-                                self.drawButton.setTitle("Play Again?", for: .normal)
-                            }
-                            self.winnerLabel.isHidden = false
-                        }
-                    }
-                    //check if player two won - if it did reset the score for both playrs
-                    if ScoreController.shared.playerTwoScore == 2 {
-                        ScoreController.shared.playerOneScore = 0
-                        ScoreController.shared.playerTwoScore = 0
-                        DispatchQueue.main.async {
-                            self.playerOneScoreLabel.isHidden = true
-                            self.playerTwoScoreLabel.isHidden = true
-                            self.playerTwoScoreLabel.text = "0"
-                            self.playerOneScoreLabel.text = "0"
-                            self.drawButton.setTitle("Play Again?", for: .normal)
-                            self.userTwoWonBet()
-                            self.animateInVisualEffect()
-                            self.userTwoWon()
-                            
-                            if self.playerTWoName == "" {
-                                self.winnerLabel.text =  "Player Two Won!"
-                                self.drawButton.titleLabel?.text = "Play Again?"
-                            } else {
-                                self.winnerLabel.text = "\(self.playerTWoName ?? "Player Two") Won!"
-                                self.drawButton.titleLabel?.text = "Play Again?"
-                            }
-                            self.winnerLabel.isHidden = false
-                        }
-                    }
+                
                 })
             } else {
                 // if failed fetching two cards
                 DispatchQueue.main.async {
-                    self.stopAnimatingCardXX()
+                    // Future Feature wiht Sping Animation
+                    //self.stopAnimatingCardXX()
                     self.present(self.networkErrorAlert, animated: true, completion: nil)
                 }
             }
@@ -627,17 +614,6 @@ extension GameBoardVC {
     }
 }
 
-extension GameBoardVC {
-    func startAnimatingCardXX() {
-        playerOneCardImage.spin()
-        playerTwoCardImage.spin()
-    }
-    
-    func stopAnimatingCardXX() {
-        playerTwoCardImage.stopRotating()
-        playerOneCardImage.stopRotating()
-    }
-}
 
 // MARK: - aniamtions
 extension GameBoardVC {
@@ -660,7 +636,7 @@ extension GameBoardVC {
         }
     }
     
-    func cardDecksAppear() {
+    func dummyCardDecksAppear() {
         
         // Cards appear
         UIImageView .animate(withDuration: 0.5, delay: 0.5, options: [], animations: {
@@ -695,99 +671,156 @@ extension GameBoardVC {
         }, completion: nil)
     }
     
-    func drawAgain(){
-        self.drawButton.setTitle("Draw Again", for: .normal)
+    // MARK: - Outcome control flow functions
+    
+    func playerOneWonChecker() {
+        if ScoreController.shared.playerOneScore == 2 {
+            
+            ScoreController.shared.playerOneScore = 0
+            ScoreController.shared.playerTwoScore = 0
+            
+            DispatchQueue.main.async {
+                self.animateInBetView()
+//🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
+//🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️🧖🏼‍♂️
+                self.userOneWonUpdateViewsLabel()
+                
+                self.hidePlayerScoreLabels()
+                self.playerOneScoreLabel.text = "0"
+                self.playerTwoScoreLabel.text = "0"
+                self.drawButton.titleLabel?.text = "Play Again?"
+                
+                if self.playerOneName == "" {
+                    self.winnerLabel.text =  "Player One Won!"
+                    //self.drawButton.titleLabel?.text = "Play Again?"
+                } else {
+                    self.winnerLabel.text = "\(self.playerOneName ?? "Player One") Won!"
+                    //self.drawButton.setTitle("Play Again?", for: .normal)
+                }
+                self.winnerLabel.isHidden = false
+            }
+        }
     }
     
-    func userOneWon() {
-        UserOneWonUI()
+    func playerTwoWonChecker() {
+        if ScoreController.shared.playerTwoScore == 2 {
+            
+            ScoreController.shared.playerOneScore = 0
+            ScoreController.shared.playerTwoScore = 0
+            
+            DispatchQueue.main.async {
+                self.animateInBetView()
+                self.userTwoWonUpdateViewsLabel()
+                
+                self.drawButton.setTitle("Play Again?", for: .normal)
+                self.hidePlayerScoreLabels()
+                self.playerTwoScoreLabel.text = "0"
+                self.playerOneScoreLabel.text = "0"
+                
+                if self.playerTWoName == "" {
+                    self.winnerLabel.text =  "Player Two Won!"
+                } else {
+                    self.winnerLabel.text = "\(self.playerTWoName ?? "Player Two") Won!"
+                }
+                self.winnerLabel.isHidden = false
+            }
+        }
+    }
+    
+    func userOneWonUpdateViewsLabel() {
+        UserOneWonLabelColorUI()
         switch playerOneName {
         case "":
-            self.playerNameOneLabel.text = "Player One Won"
+            self.playerNameOneLabel.text = "👻Player One Won"
         default:
-            self.playerNameOneLabel.text = "\(playerOneName ?? "Player One") Won"
+            self.playerNameOneLabel.text = "👻👻\(playerOneName ?? "Player One") Won"
             
             switch playerTWoName {
             case "":
-                self.playerNameTwoLabel.text = "Player Two Lost"
+                self.playerNameTwoLabel.text = "👻👻👻Player Two Lost"
             default:
-                self.playerNameTwoLabel.text = "\(playerTWoName ?? "Player Two") Lost"
+                self.playerNameTwoLabel.text = "👻👻👻👻\(playerTWoName ?? "Player Two") Lost"
             }
         }
     }
     
-    func userTwoWon(){
-        UserTWOWonUI()
+    func userTwoWonUpdateViewsLabel(){
+        UserTWOWonColorUI()
         switch playerTWoName {
         case "":
-            self.playerNameTwoLabel.text = "Player Two Won"
+            self.playerNameTwoLabel.text = "🐶Player Two Won"
         default:
-            self.playerNameTwoLabel.text = "\(playerTWoName ?? "Player Two") Won"
+            self.playerNameTwoLabel.text = "🐶🐶\(playerTWoName ?? "Player Two") Won"
             
             switch playerOneName {
             case "":
-                self.playerNameOneLabel.text = "Player One Lost"
+                self.playerNameOneLabel.text = "🐶🐶🐶Player One Lost"
             default:
-                self.playerNameOneLabel.text = "\(playerOneName ?? "Player One") Lost"
+                self.playerNameOneLabel.text = "🐶🐶🐶🐶\(playerOneName ?? "Player One") Lost"
             }
-        }
-    }
-    
-    func resetGameBaord(){
-        if self.drawButton.titleLabel?.text == "Draw Again" {
-            DispatchQueue.main.async {
-                self.cardDecksAppear()
-            }
-        }
-    }
-    
-    func userOneWonBet() {
-        playerNameTwoLabel.isHidden = true
-        playerNameOneLabel.isHidden = true
-
-        let unwrappedBetText = bet ?? "the odds were aginst you"
-        switch unwrappedBetText {
-        case "":
-            if playerOneName == "" {
-                betTextLabel.text = "Player Two lost, the odds were aginst you."
-            } else {
-                betTextLabel.text = "\(playerTWoName ?? "Player Two") \(unwrappedBetText)"
-            }
-        default:
-            break
-        }
-    }
-    
-    func userTwoWonBet() {
-        playerNameTwoLabel.isHidden = true
-        playerNameOneLabel.isHidden = true
-       
-        let unwrappedBetText = bet ?? "the odds were aginst you"
-        switch unwrappedBetText {
-        case "":
-            if playerOneName == "" {
-                betTextLabel.text = "Player One lost, the odds were aginst you."
-            } else {
-                betTextLabel.text = "\(playerOneName ?? "Player Two") \(unwrappedBetText)"
-            }
-        default:
-            break
         }
     }
     
     // MARK: - Font and Color for User Labels
     
     // Player One Won
-    func UserOneWonUI(){
-        self.playerNameOneLabel.textColor = UIColor(displayP3Red: 0, green: 0.7882, blue: 0.3255, alpha: 1.0)
-        self.playerNameTwoLabel.textColor = UIColor(displayP3Red: 0.9686, green: 0.3059, blue: 0, alpha: 1.0)
-        
+    func UserOneWonLabelColorUI(){
+        self.playerNameOneLabel.textColor = ColorController.green.value
+        self.playerNameTwoLabel.textColor = ColorController.red.value
     }
     
     // Player Two Won
-    func UserTWOWonUI(){
-        self.playerNameTwoLabel.textColor = UIColor(displayP3Red: 0, green: 0.7882, blue: 0.3255, alpha: 1.0)
-        self.playerNameOneLabel.textColor = UIColor(displayP3Red: 0.9686, green: 0.3059, blue: 0, alpha: 1.0)
-        
+    func UserTWOWonColorUI(){
+        self.playerNameTwoLabel.textColor = ColorController.green.value
+        self.playerNameOneLabel.textColor = ColorController.red.value
     }
 }
+
+//Future Feature
+// MARK: -  Spin Animation
+
+//extension GameBoardVC {
+//    func startAnimatingCardXX() {
+//        playerOneCardImage.spin()
+//        playerTwoCardImage.spin()
+//    }
+//
+//    func stopAnimatingCardXX() {
+//        playerTwoCardImage.stopRotating()
+//        playerOneCardImage.stopRotating()
+//    }
+//}
+
+// NOTE: - Future Version
+
+//    func userOneWonBet() {
+//        self.hidePlayerNameLabels()
+//        let unwrappedBetText = self.bet ?? "the odds were aginst you"
+//        switch unwrappedBetText {
+//        case "":
+//            if self.playerOneName == "" {
+//                self.betTextLabel.text = "Player Two lost, the odds were aginst you."
+//            } else {
+//                self.betTextLabel.text = "\(self.playerTWoName ?? "Player Two") \(unwrappedBetText)"
+//            }
+//        default:
+//            break
+//        }
+//    }
+//
+//
+//    func userTwoWonBet() {
+//        self.hidePlayerNameLabels()
+//
+//        let unwrappedBetText = self.bet ?? "the odds were aginst you"
+//        switch unwrappedBetText {
+//        case "":
+//            if self.playerOneName == "" {
+//                self.betTextLabel.text = "Player One lost, the odds were aginst you."
+//            } else {
+//                self.betTextLabel.text = "\(self.playerOneName ?? "Player Two") \(unwrappedBetText)"
+//            }
+//        default:
+//            break
+//        }
+//    }

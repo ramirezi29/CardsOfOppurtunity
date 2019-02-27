@@ -17,7 +17,6 @@ struct Card: Decodable {
     let image: String // Note * taking in a string, not an image
     let value: String
     
-    
     var rank: Int {
         if let integerValue = Int(value) {
             return integerValue

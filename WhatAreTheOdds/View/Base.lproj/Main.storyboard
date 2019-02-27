@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--What Are the Odds?-->
+        <!--Log InVC-->
         <scene sceneID="4m5-Zq-NDc">
             <objects>
                 <viewController id="3LS-gW-mDa" customClass="LogInVC" customModule="WhatAreTheOdds" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,18 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ovq-IW-xW6" userLabel="Bottom Stack View">
-                                <rect key="frame" x="37" y="254" width="331" height="309"/>
+                                <rect key="frame" x="37" y="254" width="331" height="318"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whats on the Line?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMj-1F-xqi">
-                                        <rect key="frame" x="92.5" y="0.0" width="146.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="63.5" y="0.0" width="204.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-3C-Cr1">
-                                        <rect key="frame" x="0.0" y="28.5" width="331" height="280.5"/>
+                                        <rect key="frame" x="0.0" y="37" width="331" height="281"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -39,24 +39,64 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="w4k-PO-qyk" userLabel="Top Stack View">
-                                <rect key="frame" x="75" y="144" width="248.5" height="79"/>
+                                <rect key="frame" x="78" y="123" width="248.5" height="79"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 1 Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="89U-ae-XBJ">
                                         <rect key="frame" x="0.0" y="0.0" width="248.5" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" enablesReturnKeyAutomatically="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 2 Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b5g-9C-oED">
                                         <rect key="frame" x="0.0" y="49" width="248.5" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVF-Wf-1uf" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
-                                <rect key="frame" x="139" y="613" width="125" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the Odds ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEy-a8-2Ot">
+                                <rect key="frame" x="88" y="66" width="275.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hatCard" translatesAutoresizingMaskIntoConstraints="NO" id="Ruq-WT-LTf">
+                                <rect key="frame" x="5" y="30.5" width="80" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ruq-WT-LTf" secondAttribute="height" multiplier="1:1" constant="3" id="KFB-UO-6xC"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="FPU-Uo-K8D">
+                                <rect key="frame" x="20" y="701" width="372.5" height="99"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHL-EI-E1F">
+                                        <rect key="frame" x="156.5" y="0.0" width="59.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highest card value earns a point" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-Hk-hph">
+                                        <rect key="frame" x="63.5" y="35" width="246" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First player to reach 2 points wins the game" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="W5m-40-Mn8">
+                                        <rect key="frame" x="20" y="70" width="332.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVF-Wf-1uf" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
+                                <rect key="frame" x="137" y="608" width="141" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Qk7-YV-bdm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <segue destination="EVn-7U-Bwo" kind="show" id="pPc-IQ-scA"/>
@@ -65,20 +105,28 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vVF-Wf-1uf" firstAttribute="leading" secondItem="xpf-DY-Ath" secondAttribute="leading" constant="139" id="HCe-E1-EBi"/>
-                            <constraint firstItem="w4k-PO-qyk" firstAttribute="leading" secondItem="xpf-DY-Ath" secondAttribute="leading" constant="75" id="Hci-5j-XuB"/>
-                            <constraint firstItem="vVF-Wf-1uf" firstAttribute="top" secondItem="Ovq-IW-xW6" secondAttribute="bottom" constant="50" id="LNJ-zI-rnz"/>
+                            <constraint firstItem="vVF-Wf-1uf" firstAttribute="top" secondItem="Ovq-IW-xW6" secondAttribute="bottom" constant="36" id="1fb-wK-XRs"/>
+                            <constraint firstItem="FPU-Uo-K8D" firstAttribute="leading" secondItem="9z8-jg-M1Y" secondAttribute="leading" constant="20" id="1z1-pp-c4w"/>
+                            <constraint firstItem="KEy-a8-2Ot" firstAttribute="leading" secondItem="9z8-jg-M1Y" secondAttribute="leading" constant="88" id="4eu-Ac-3w1"/>
+                            <constraint firstItem="KEy-a8-2Ot" firstAttribute="leading" secondItem="Ruq-WT-LTf" secondAttribute="trailing" constant="3" id="Cif-4b-Mo7"/>
+                            <constraint firstItem="KEy-a8-2Ot" firstAttribute="centerY" secondItem="Ruq-WT-LTf" secondAttribute="centerY" constant="15" id="HXK-5d-uMX"/>
+                            <constraint firstItem="w4k-PO-qyk" firstAttribute="leading" secondItem="xpf-DY-Ath" secondAttribute="leading" constant="78" id="Hci-5j-XuB"/>
+                            <constraint firstItem="vVF-Wf-1uf" firstAttribute="centerX" secondItem="9z8-jg-M1Y" secondAttribute="centerX" id="SBh-B3-9Uf"/>
                             <constraint firstItem="Ovq-IW-xW6" firstAttribute="top" secondItem="9z8-jg-M1Y" secondAttribute="top" constant="254" id="a5x-qR-c8q"/>
-                            <constraint firstItem="xpf-DY-Ath" firstAttribute="bottom" secondItem="vVF-Wf-1uf" secondAttribute="bottom" constant="219" id="ax7-qe-P3I"/>
+                            <constraint firstItem="w4k-PO-qyk" firstAttribute="top" secondItem="KEy-a8-2Ot" secondAttribute="bottom" constant="21" id="bmz-wH-H14"/>
+                            <constraint firstItem="vVF-Wf-1uf" firstAttribute="leading" secondItem="xpf-DY-Ath" secondAttribute="leading" constant="137" id="daJ-bB-CLx"/>
                             <constraint firstItem="w4k-PO-qyk" firstAttribute="width" secondItem="xpf-DY-Ath" secondAttribute="width" multiplier="0.6" id="fVZ-ej-4Tv"/>
-                            <constraint firstItem="Ovq-IW-xW6" firstAttribute="top" secondItem="w4k-PO-qyk" secondAttribute="bottom" constant="31" id="go0-qo-Amh"/>
+                            <constraint firstItem="Ruq-WT-LTf" firstAttribute="leading" secondItem="xpf-DY-Ath" secondAttribute="leading" constant="5" id="fjN-In-XAy"/>
+                            <constraint firstItem="FPU-Uo-K8D" firstAttribute="top" secondItem="vVF-Wf-1uf" secondAttribute="bottom" constant="33" id="gEc-Hf-8kx"/>
+                            <constraint firstItem="Ovq-IW-xW6" firstAttribute="top" secondItem="w4k-PO-qyk" secondAttribute="bottom" constant="52" id="go0-qo-Amh"/>
                             <constraint firstItem="Ovq-IW-xW6" firstAttribute="width" secondItem="9z8-jg-M1Y" secondAttribute="width" multiplier="0.8" id="i2D-j1-W5G"/>
                             <constraint firstItem="Ovq-IW-xW6" firstAttribute="leading" secondItem="xpf-DY-Ath" secondAttribute="leading" constant="37" id="iPY-fu-FxN"/>
-                            <constraint firstItem="vVF-Wf-1uf" firstAttribute="width" secondItem="9z8-jg-M1Y" secondAttribute="width" multiplier="0.3" constant="1" id="tY0-5Z-Q31"/>
+                            <constraint firstItem="xpf-DY-Ath" firstAttribute="bottom" secondItem="FPU-Uo-K8D" secondAttribute="bottom" constant="62" id="s1r-k8-Kbg"/>
+                            <constraint firstItem="FPU-Uo-K8D" firstAttribute="width" secondItem="9z8-jg-M1Y" secondAttribute="width" multiplier="0.9" id="thy-jp-Ihf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xpf-DY-Ath"/>
                     </view>
-                    <navigationItem key="navigationItem" title="What Are the Odds?" id="5Mp-q3-GaO">
+                    <navigationItem key="navigationItem" id="5Mp-q3-GaO">
                         <barButtonItem key="backBarButtonItem" title="Reset Game" id="y6n-aD-LBd"/>
                     </navigationItem>
                     <connections>
@@ -91,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubd-oN-r8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28" y="-199.25037481259372"/>
+            <point key="canvasLocation" x="-88.405797101449281" y="-292.63392857142856"/>
         </scene>
         <!--Game BoardVC-->
         <scene sceneID="Qk6-hz-1H8">
@@ -101,125 +149,138 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDQ-D5-CjS">
-                                <rect key="frame" x="124" y="594.5" width="166" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rotation">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdi-tu-fbc">
-                                <rect key="frame" x="124" y="277" width="166" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rotation">
-                                        <integer key="value" value="-180"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="DO4-Cq-nI9" userLabel="PlayerTwoCard">
-                                <rect key="frame" x="132" y="45" width="150" height="224"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="DO4-Cq-nI9" userLabel="PlayerTwoCard">
+                                <rect key="frame" x="88" y="116" width="224" height="224"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="224" id="Ort-Eg-8CW"/>
-                                    <constraint firstAttribute="width" constant="150" id="x1e-qN-mNZ"/>
+                                    <constraint firstAttribute="width" secondItem="DO4-Cq-nI9" secondAttribute="height" multiplier="1:1" id="17L-2N-Xux"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-33" translatesAutoresizingMaskIntoConstraints="NO" id="W72-a8-01Q" userLabel="BottomCardStack">
-                                <rect key="frame" x="87" y="684" width="246" height="162"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="mQV-Dx-R35">
-                                        <rect key="frame" x="0.0" y="0.0" width="104" height="162"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="104" id="UgL-er-BZP"/>
-                                            <constraint firstAttribute="height" constant="162" id="VCa-oK-6kl"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="tKI-mm-Xft">
-                                        <rect key="frame" x="71" y="0.0" width="104" height="162"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="162" id="4GH-pv-K7b"/>
-                                            <constraint firstAttribute="width" constant="104" id="Nar-2g-y30"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="Qsc-pk-hGG">
-                                        <rect key="frame" x="142" y="0.0" width="104" height="162"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="162" id="CQh-vU-3St"/>
-                                            <constraint firstAttribute="width" constant="104" id="LQE-BX-med"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="Hyk-9W-yGl" userLabel="PlayerOneCard">
-                                <rect key="frame" x="132" y="628" width="150" height="224"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="Hyk-9W-yGl" userLabel="PlayerOneCard">
+                                <rect key="frame" x="88" y="616" width="224" height="224"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="224" id="A4N-pC-xHg"/>
-                                    <constraint firstAttribute="width" constant="150" id="FhC-5g-F8f"/>
+                                    <constraint firstAttribute="width" secondItem="Hyk-9W-yGl" secondAttribute="height" multiplier="1:1" id="ahC-ag-BeF"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Score*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMu-WP-9Qa">
-                                <rect key="frame" x="342" y="667" width="52" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ME-Ni-15j">
-                                <rect key="frame" x="67" y="421" width="280" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.3411764706" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-94-efo" userLabel="Draw" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
-                                <rect key="frame" x="104" y="480.5" width="207" height="49.5"/>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                                <state key="normal" title="Select Your Cards"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rotation">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="drawButtonTapped:" destination="EVn-7U-Bwo" eventType="touchUpInside" id="gCp-ZV-dSN"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-RK-HE7">
-                                <rect key="frame" x="341" y="193" width="52" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="-36" translatesAutoresizingMaskIntoConstraints="NO" id="JP1-Lw-mXY" userLabel="TopCardStack">
-                                <rect key="frame" x="87" y="88" width="240" height="162"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="JP1-Lw-mXY" userLabel="TopCardStack">
+                                <rect key="frame" x="42" y="116" width="331" height="162"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="m2i-Vl-mmX">
-                                        <rect key="frame" x="0.0" y="0.0" width="104" height="162"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="162"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="104" id="EPM-cm-pja"/>
                                             <constraint firstAttribute="height" constant="162" id="LeG-x1-FSo"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="MaK-iu-grG">
-                                        <rect key="frame" x="68" y="0.0" width="104" height="162"/>
+                                        <rect key="frame" x="111" y="0.0" width="109" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="162" id="6oF-k5-rq5"/>
-                                            <constraint firstAttribute="width" constant="104" id="bsg-H6-HZH"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="x2I-9e-W14">
-                                        <rect key="frame" x="136" y="0.0" width="104" height="162"/>
+                                        <rect key="frame" x="222" y="0.0" width="109" height="162"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="104" id="CAf-qh-jbs"/>
                                             <constraint firstAttribute="height" constant="162" id="Y00-1h-0dX"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0ak-z7-V02" userLabel="Mid Stack">
+                                <rect key="frame" x="42" y="364" width="331" height="240"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-ac-Jp6" userLabel="P2 Name Score Stack">
+                                        <rect key="frame" x="69.5" y="0.0" width="192.5" height="54"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Player 2 Name" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdi-tu-fbc">
+                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="54"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rotation">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P2Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-RK-HE7">
+                                                <rect key="frame" x="109.5" y="0.0" width="83" height="54"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ME-Ni-15j">
+                                        <rect key="frame" x="0.0" y="62" width="331" height="54"/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.3411764706" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-94-efo" userLabel="Draw" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
+                                        <rect key="frame" x="49.5" y="124" width="232" height="54"/>
+                                        <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Select Your Cards"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rotation">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="drawButtonTapped:" destination="EVn-7U-Bwo" eventType="touchUpInside" id="gCp-ZV-dSN"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="wEE-Zz-VvP" userLabel="P1 Name Score Stack">
+                                        <rect key="frame" x="86" y="186" width="159.5" height="54"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Player 1 Name" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDQ-D5-CjS">
+                                                <rect key="frame" x="0.0" y="0.0" width="66" height="54"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rotation">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="P!Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMu-WP-9Qa">
+                                                <rect key="frame" x="93" y="0.0" width="66.5" height="54"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0ME-Ni-15j" firstAttribute="width" secondItem="0ak-z7-V02" secondAttribute="width" id="DYZ-aW-ddl"/>
+                                    <constraint firstItem="lEH-94-efo" firstAttribute="width" secondItem="0ak-z7-V02" secondAttribute="width" multiplier="0.7" id="VmV-HY-JY1"/>
+                                    <constraint firstItem="Vdi-tu-fbc" firstAttribute="width" secondItem="0ak-z7-V02" secondAttribute="width" multiplier="0.8" id="agO-M9-su9"/>
+                                    <constraint firstItem="hDQ-D5-CjS" firstAttribute="width" secondItem="0ak-z7-V02" secondAttribute="width" multiplier="0.8" id="grh-jP-xCV"/>
+                                    <constraint firstItem="EMu-WP-9Qa" firstAttribute="width" secondItem="0ak-z7-V02" secondAttribute="width" multiplier="0.2" id="pV6-39-Nep"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="W72-a8-01Q" userLabel="BottomCardStack">
+                                <rect key="frame" x="42" y="700" width="331" height="162"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="mQV-Dx-R35">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="162"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="162" id="VCa-oK-6kl"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="tKI-mm-Xft">
+                                        <rect key="frame" x="111" y="0.0" width="109" height="162"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="162" id="4GH-pv-K7b"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="Qsc-pk-hGG">
+                                        <rect key="frame" x="222" y="0.0" width="109" height="162"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="162" id="CQh-vU-3St"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -227,27 +288,23 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JP1-Lw-mXY" firstAttribute="leading" secondItem="8xU-C1-AZ9" secondAttribute="leading" constant="87" id="1hb-Zw-fO4"/>
-                            <constraint firstItem="Vdi-tu-fbc" firstAttribute="centerX" secondItem="8xU-C1-AZ9" secondAttribute="centerX" id="AVb-Xc-ZVb"/>
-                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="Vdi-tu-fbc" secondAttribute="bottom" constant="564.5" id="F8w-cA-TRf"/>
-                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="JP1-Lw-mXY" secondAttribute="bottom" constant="612" id="FEL-yN-yVV"/>
-                            <constraint firstItem="W72-a8-01Q" firstAttribute="leading" secondItem="8xU-C1-AZ9" secondAttribute="leading" constant="87" id="NUy-ge-aOv"/>
-                            <constraint firstItem="Vdi-tu-fbc" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.4" id="PXM-mE-bUF"/>
-                            <constraint firstItem="DO4-Cq-nI9" firstAttribute="leading" secondItem="8xU-C1-AZ9" secondAttribute="leading" constant="132" id="Qge-H6-s8v"/>
-                            <constraint firstItem="EMu-WP-9Qa" firstAttribute="leading" secondItem="Hyk-9W-yGl" secondAttribute="trailing" constant="60" id="Vig-dJ-e2p"/>
-                            <constraint firstItem="lEH-94-efo" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.5" id="YbI-SO-DAJ"/>
-                            <constraint firstItem="lEH-94-efo" firstAttribute="leading" secondItem="8xU-C1-AZ9" secondAttribute="leading" constant="104" id="a8n-xw-Ue0"/>
-                            <constraint firstItem="hDQ-D5-CjS" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.4" id="cfZ-g2-tsu"/>
-                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="Hyk-9W-yGl" secondAttribute="bottom" constant="10" id="ecE-7a-k7b"/>
-                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="W72-a8-01Q" secondAttribute="bottom" constant="16" id="f9l-OP-EL8"/>
-                            <constraint firstItem="Hyk-9W-yGl" firstAttribute="centerX" secondItem="BiC-o0-prm" secondAttribute="centerX" id="fIW-iR-CZZ"/>
-                            <constraint firstItem="lEH-94-efo" firstAttribute="height" secondItem="BiC-o0-prm" secondAttribute="height" multiplier="0.055" id="jkj-44-oCS"/>
-                            <constraint firstItem="JP1-Lw-mXY" firstAttribute="top" secondItem="8xU-C1-AZ9" secondAttribute="top" id="lfC-7F-ddG"/>
-                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="DO4-Cq-nI9" secondAttribute="bottom" constant="593" id="rJX-T8-W9t"/>
-                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="lEH-94-efo" secondAttribute="bottom" constant="332" id="sxJ-DP-T6p"/>
-                            <constraint firstItem="hDQ-D5-CjS" firstAttribute="centerX" secondItem="BiC-o0-prm" secondAttribute="centerX" id="tz8-70-yLL"/>
-                            <constraint firstItem="Hyk-9W-yGl" firstAttribute="leading" secondItem="8xU-C1-AZ9" secondAttribute="leading" constant="132" id="vEX-no-xQP"/>
-                            <constraint firstItem="Hyk-9W-yGl" firstAttribute="top" secondItem="hDQ-D5-CjS" secondAttribute="bottom" constant="13" id="w7O-dd-RjG"/>
+                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="0ak-z7-V02" secondAttribute="bottom" constant="258" id="1ge-Nn-uzV"/>
+                            <constraint firstItem="0ak-z7-V02" firstAttribute="top" secondItem="DO4-Cq-nI9" secondAttribute="bottom" constant="24" id="2RB-Uy-wpw"/>
+                            <constraint firstItem="JP1-Lw-mXY" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.8" id="2ge-Ci-1ra"/>
+                            <constraint firstItem="W72-a8-01Q" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.8" id="99r-N3-sHh"/>
+                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="Hyk-9W-yGl" secondAttribute="bottom" constant="22" id="DHA-7q-h4l"/>
+                            <constraint firstItem="0ak-z7-V02" firstAttribute="leading" secondItem="W72-a8-01Q" secondAttribute="leading" id="PX4-Vc-bo8"/>
+                            <constraint firstItem="JP1-Lw-mXY" firstAttribute="leading" secondItem="8xU-C1-AZ9" secondAttribute="leading" constant="42" id="Q3x-nP-l1h"/>
+                            <constraint firstItem="0ak-z7-V02" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.8" id="T7X-Zt-Ubf"/>
+                            <constraint firstItem="DO4-Cq-nI9" firstAttribute="centerX" secondItem="8xU-C1-AZ9" secondAttribute="centerX" id="b4S-rJ-MOZ"/>
+                            <constraint firstItem="Hyk-9W-yGl" firstAttribute="trailing" secondItem="DO4-Cq-nI9" secondAttribute="trailing" id="eIM-Sz-68O"/>
+                            <constraint firstItem="8xU-C1-AZ9" firstAttribute="bottom" secondItem="W72-a8-01Q" secondAttribute="bottom" id="f9l-OP-EL8"/>
+                            <constraint firstItem="lYD-RK-HE7" firstAttribute="width" secondItem="BiC-o0-prm" secondAttribute="width" multiplier="0.2" id="gwQ-Q8-Ev2"/>
+                            <constraint firstItem="Hyk-9W-yGl" firstAttribute="leading" secondItem="DO4-Cq-nI9" secondAttribute="leading" id="htq-UI-beM"/>
+                            <constraint firstItem="DO4-Cq-nI9" firstAttribute="top" secondItem="8xU-C1-AZ9" secondAttribute="top" constant="28" id="iCP-Cr-1aC"/>
+                            <constraint firstItem="JP1-Lw-mXY" firstAttribute="top" secondItem="8xU-C1-AZ9" secondAttribute="top" constant="28" id="j91-c1-1G7"/>
+                            <constraint firstItem="Hyk-9W-yGl" firstAttribute="top" secondItem="0ak-z7-V02" secondAttribute="bottom" constant="12" id="lQf-Xt-zZb"/>
+                            <constraint firstItem="0ak-z7-V02" firstAttribute="centerX" secondItem="JP1-Lw-mXY" secondAttribute="centerX" id="zkl-s7-wtd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8xU-C1-AZ9"/>
                     </view>
@@ -274,37 +331,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQD-Gj-u3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="Zty-dC-GFI">
-                    <rect key="frame" x="0.0" y="0.0" width="281" height="176"/>
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-MQ-KAH" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
-                            <rect key="frame" x="70" y="168" width="141.5" height="30"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Done">
-                                <color key="titleColor" red="0.072989121530000006" green="0.14880498289999999" blue="0.78063875439999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="betDoneButtonTapped:" destination="EVn-7U-Bwo" eventType="touchUpInside" id="RhD-Y8-fGG"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Oppurtnity)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AT-UQ-A8A">
-                            <rect key="frame" x="51" y="102" width="178" height="58"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="218" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-NW-h71" userLabel="Bet Stack">
+                            <rect key="frame" x="0.0" y="12" width="280" height="268.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Odds Were Against You" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AT-UQ-A8A">
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-MQ-KAH" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="238.5" width="280" height="30"/>
+                                    <color key="backgroundColor" red="1" green="0.37609732109999999" blue="0.62530238319999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Done">
+                                        <color key="titleColor" red="0.072989121530000006" green="0.14880498289999999" blue="0.78063875439999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="betDoneButtonTapped:" destination="EVn-7U-Bwo" eventType="touchUpInside" id="RhD-Y8-fGG"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.059867565320000003" green="0.59801256349999998" blue="0.78063875439999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="MOX-MQ-KAH" firstAttribute="top" secondItem="51f-e9-0vi" secondAttribute="top" constant="124" id="35V-Yv-JYA"/>
-                        <constraint firstItem="MOX-MQ-KAH" firstAttribute="width" secondItem="Zty-dC-GFI" secondAttribute="width" multiplier="0.5" constant="1" id="drD-B2-gil"/>
+                        <constraint firstItem="4AT-UQ-A8A" firstAttribute="height" secondItem="Zty-dC-GFI" secondAttribute="height" multiplier="0.7" id="3aq-Eh-82l"/>
+                        <constraint firstItem="MOX-MQ-KAH" firstAttribute="height" secondItem="Zty-dC-GFI" secondAttribute="height" multiplier="0.3" id="Qnn-Ef-nhR"/>
+                        <constraint firstItem="fcf-NW-h71" firstAttribute="bottom" secondItem="51f-e9-0vi" secondAttribute="bottom" constant="35" id="b8S-J7-PC6"/>
+                        <constraint firstItem="fcf-NW-h71" firstAttribute="top" secondItem="Zty-dC-GFI" secondAttribute="top" constant="12" id="hOj-Iw-qvc"/>
+                        <constraint firstAttribute="bottom" secondItem="fcf-NW-h71" secondAttribute="bottom" constant="-1" id="ksH-J2-Ska"/>
+                        <constraint firstItem="fcf-NW-h71" firstAttribute="leading" secondItem="Zty-dC-GFI" secondAttribute="leading" id="u1Y-yV-4f4"/>
+                        <constraint firstItem="fcf-NW-h71" firstAttribute="width" secondItem="Zty-dC-GFI" secondAttribute="width" id="v4Z-Gx-Kf5"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="51f-e9-0vi"/>
                 </view>
-                <tapGestureRecognizer id="KPa-Mr-41K"/>
-                <tapGestureRecognizer id="MSW-BR-KgK"/>
-                <tapGestureRecognizer id="Xpx-Fb-o0M"/>
             </objects>
             <point key="canvasLocation" x="1091.304347826087" y="-199.55357142857142"/>
         </scene>
@@ -329,5 +392,6 @@
     </scenes>
     <resources>
         <image name="backOfCard" width="720" height="1049"/>
+        <image name="hatCard" width="512" height="512"/>
     </resources>
 </document>

@@ -23,7 +23,6 @@
 		4769324B2211294F00E3E879 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769324A2211294F00E3E879 /* LogInVC.swift */; };
 		4769324D22112BEF00E3E879 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769324C22112BEF00E3E879 /* ScoreController.swift */; };
 		4769324F22112E6600E3E879 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769324E22112E6600E3E879 /* AlertController.swift */; };
-		47A979292222546E0083637F /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A979282222546E0083637F /* PlayerController.swift */; };
 		47FC5A5A2213CE2C00498F7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FC5A592213CE2C00498F7D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +45,6 @@
 		4769324A2211294F00E3E879 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		4769324C22112BEF00E3E879 /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		4769324E22112E6600E3E879 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
-		47A979282222546E0083637F /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		47FC5A592213CE2C00498F7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,7 +124,6 @@
 			children = (
 				476932372211249B00E3E879 /* CardController.swift */,
 				4769324C22112BEF00E3E879 /* ScoreController.swift */,
-				47A979282222546E0083637F /* PlayerController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -246,7 +243,6 @@
 				4769324F22112E6600E3E879 /* AlertController.swift in Sources */,
 				4769321E221123BC00E3E879 /* AppDelegate.swift in Sources */,
 				473B9B23221E5B99004BE78F /* IRButton.swift in Sources */,
-				47A979292222546E0083637F /* PlayerController.swift in Sources */,
 				4769323A221124B900E3E879 /* Card.swift in Sources */,
 				476932442211279800E3E879 /* GameBoardVC.swift in Sources */,
 				47693240221125DC00E3E879 /* Score.swift in Sources */,
