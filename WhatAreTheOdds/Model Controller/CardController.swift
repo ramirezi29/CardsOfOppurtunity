@@ -21,10 +21,11 @@ class CardController {
     // MARK: - Need to refactor and make Card? and include error handling
     static func fetchCards(amount: Int = 2, completion: @escaping FetchCardsCompletion) {
         
-        guard let url = baseURL else { completion (nil, NetworkingError.badBaseURL("\n\n💀Bad base URL"))
+        guard let url = baseURL else { completion (nil, NetworkingError.badBaseURL("Bad base URL"))
             return }
         
-        let builtURL = url.appendingPathComponent("draw")
+        let builtURL = url.appendingPathComponent("draw").appendingPathComponent("/")
+        
         print(builtURL.absoluteURL)
         
         var components = URLComponents(url: builtURL, resolvingAgainstBaseURL: true)
@@ -35,14 +36,15 @@ class CardController {
         var request = URLRequest(url: queryURL)
         request.httpMethod = NetworkController.HTTPMethod.get.rawValue
         
-        print(queryURL.absoluteURL)
-        
+        //print(queryURL.absoluteURL)
+        //https://deckofcardsapi.com/api/deck/new/draw/?count=2
+        //https://deckofcardsapi.com/api/deck/new/draw?count=2
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 print("\n\n🚀 There was an error with fetching the cards in: \(#file) \n\n \(#function); \n\n\(error); \n\n\(error.localizedDescription) 🚀\n\n")
                 completion(nil, .forwardedError(error)); return
             }
-            guard let data = data else { completion(nil, .invalidData("\n\n💀 Invalid Data\n\n")); return }
+            guard let data = data else { completion(nil, .invalidData("Invalid Data")); return }
             do {
                 let topLevelDictionary = try JSONDecoder().decode(CardsDictionary.self, from: data)
                 let cardsFromWeb = topLevelDictionary.cards
@@ -61,12 +63,12 @@ extension CardController {
     static func fetchImagesFor(card: Card, completion: @escaping FetchImageCompletion) {
         guard let url = URL(string: card.image) else { return }
         
-        print(url.absoluteURL)
+        //print(url.absoluteURL)
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 print("\n\n🚀 There was an error with fetching the image in: \(#file) \n\n \(#function); \n\n\(error); \n\n\(error.localizedDescription) 🚀\n\n")
             }
-            guard let data = data else { completion(nil, .invalidData("\n\n💀Invalid Data\n\n")); return }
+            guard let data = data else { completion(nil, .invalidData("Invalid Data")); return }
             let imageFromWeb = UIImage(data: data)
             completion(imageFromWeb, nil)
             }.resume()

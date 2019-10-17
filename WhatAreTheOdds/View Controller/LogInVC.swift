@@ -10,47 +10,69 @@ import UIKit
 
 class LogInVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
-    @IBOutlet weak var playeOneTextField: UITextField!
+    @IBOutlet weak var playerOneTextField: UITextField!
     @IBOutlet weak var playerTwoTextField: UITextField!
     @IBOutlet weak var betTextView: UITextView!
     @IBOutlet weak var segueButton: UIButton!
+    
+    var placeholderLabel : UILabel!
+    var tapGestHideKeys: UITapGestureRecognizer? = nil
+    // MARK: - Life Cyles
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        setUpTextFields()
+        setUpBetView()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        view.backgroundColor = ColorController.gameBoardBackground.value
+        
+        tapGestHideKeys = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if let tapGestHideKeys = tapGestHideKeys {
+            view.addGestureRecognizer(tapGestHideKeys)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if let tapGestHideKeys = tapGestHideKeys {
+            view.removeGestureRecognizer(tapGestHideKeys)
+        }
+    }
     
     // Hides the phone's status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    @IBOutlet var textView : UITextView!
-    
-    var placeholderLabel : UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func setUpDummyPlayer() {
         // Test Case
-        //betTextView.text = "🏡🏡🏡🏡🏡🏡🏡"
-        //playerTwoTextField.text = "Sammy"
-        //playeOneTextField.text = "Tagger"
+        betTextView.text = "🏡🏡🏡🏡🏡🏡🏡"
+        playerTwoTextField.text = "Sammy"
+        playerOneTextField.text = "Tagger"
+    }
+    
+    func setUpTextFields() {
+        playerOneTextField.delegate = self
+        playerTwoTextField.delegate = self
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        //UI
-        view.backgroundColor = ColorController.gameBoardBackground.value
-        // navigation
-        
-        // Delegate declaration
-        self.playeOneTextField.delegate = self
-        self.playerTwoTextField.delegate = self
-        
-        // Bet textView
-        self.betTextView.delegate = self
-        self.betTextView.returnKeyType = .done
-        
-        //Tap G
-        let hideKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
-        
-        view.addGestureRecognizer(hideKeyboardTap)
-        
+        playerTwoTextField.layer.cornerRadius = 4
+        playerOneTextField.layer.cornerRadius = 4
+    }
+    
+    func setUpBetView() {
+        betTextView.delegate = self
+        betTextView.returnKeyType = .done
+        betTextView.layer.cornerRadius = 5
         // place holder
         betTextView.delegate = self
         placeholderLabel = UILabel()
@@ -62,19 +84,13 @@ class LogInVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.isHidden = !betTextView.text.isEmpty
         
-        playerTwoTextField.layer.cornerRadius = 4
-        playerTwoTextField.layer.cornerRadius = 4
-        betTextView.layer.cornerRadius = 5
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
+    
     
     @objc func hideKeyboard(_ sender: UITapGestureRecognizer) {
         betTextView.resignFirstResponder()
-        playeOneTextField.resignFirstResponder()
+        playerOneTextField.resignFirstResponder()
         playerTwoTextField.resignFirstResponder()
     }
     
@@ -85,7 +101,7 @@ class LogInVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let playerOneName = playeOneTextField.text,
+        guard let playerOneName = playerOneTextField.text,
             let playerTwoName = playerTwoTextField.text,
             let bet = betTextView.text else { return  }
         
@@ -97,7 +113,7 @@ class LogInVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let _ = (textField  === playeOneTextField) ? playerTwoTextField : playeOneTextField
+        let _ = (textField  === playerOneTextField) ? playerTwoTextField : playerOneTextField
         playerTwoTextField.becomeFirstResponder()
         
         return true
