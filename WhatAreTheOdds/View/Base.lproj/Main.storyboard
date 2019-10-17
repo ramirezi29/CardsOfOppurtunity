@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2He-D6-grp">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2He-D6-grp">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,13 +37,13 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the Odds ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEy-a8-2Ot">
-                                <rect key="frame" x="88" y="66" width="275.5" height="36"/>
+                                <rect key="frame" x="88" y="58" width="275.5" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hatCard" translatesAutoresizingMaskIntoConstraints="NO" id="Ruq-WT-LTf">
-                                <rect key="frame" x="5" y="30.5" width="80" height="77"/>
+                                <rect key="frame" x="5" y="22.5" width="80" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ruq-WT-LTf" secondAttribute="height" multiplier="1:1" constant="3" id="KFB-UO-6xC"/>
                                 </constraints>
@@ -86,17 +84,15 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="w4k-PO-qyk" userLabel="Top Stack View">
-                                <rect key="frame" x="83" y="134" width="248" height="79"/>
+                                <rect key="frame" x="83" y="126" width="248" height="87"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 1 Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="89U-ae-XBJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="248" height="30"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="248" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 2 Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b5g-9C-oED">
-                                        <rect key="frame" x="0.0" y="49" width="248" height="30"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="53" width="248" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
@@ -131,10 +127,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="betTextView" destination="3Sh-3C-Cr1" id="8Yg-yQ-Orh"/>
-                        <outlet property="playeOneTextField" destination="89U-ae-XBJ" id="Nmq-Ye-Gmi"/>
+                        <outlet property="playerOneTextField" destination="89U-ae-XBJ" id="Nmq-Ye-Gmi"/>
                         <outlet property="playerTwoTextField" destination="b5g-9C-oED" id="OUv-X4-T9j"/>
                         <outlet property="segueButton" destination="vVF-Wf-1uf" id="zHj-wi-Ryc"/>
-                        <outlet property="textView" destination="3Sh-3C-Cr1" id="Lcu-ta-cac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubd-oN-r8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,10 +183,10 @@
                                 <rect key="frame" x="42" y="364" width="331" height="240"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-ac-Jp6" userLabel="P2 Name Score Stack">
-                                        <rect key="frame" x="99.5" y="0.0" width="132.5" height="54"/>
+                                        <rect key="frame" x="33.5" y="0.0" width="264" height="54"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Player 2 Name" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdi-tu-fbc">
-                                                <rect key="frame" x="0.0" y="0.0" width="66" height="54"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="54"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -202,7 +197,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-RK-HE7">
-                                                <rect key="frame" x="66" y="0.0" width="66.5" height="54"/>
+                                                <rect key="frame" x="132" y="0.0" width="132" height="54"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -335,16 +330,16 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="218" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-NW-h71" userLabel="Bet Stack">
-                            <rect key="frame" x="0.0" y="12" width="280" height="269"/>
+                            <rect key="frame" x="0.0" y="12" width="280" height="303"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Odds Were Against You" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AT-UQ-A8A">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="23"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-MQ-KAH" customClass="IRButton" customModule="WhatAreTheOdds" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="238.5" width="280" height="30.5"/>
+                                    <rect key="frame" x="0.0" y="241" width="280" height="62"/>
                                     <color key="backgroundColor" red="1" green="0.37609732109999999" blue="0.62530238319999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <state key="normal" title="Done">
@@ -391,7 +386,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backOfCard" width="720" height="1049"/>
-        <image name="hatCard" width="512" height="512"/>
+        <image name="backOfCard" width="240" height="349.66665649414062"/>
+        <image name="hatCard" width="170.66667175292969" height="170.66667175292969"/>
     </resources>
 </document>
