@@ -22,7 +22,6 @@ class LogInVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setUpTextFields()
         setUpBetView()
         

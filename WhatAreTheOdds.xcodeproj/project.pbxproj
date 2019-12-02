@@ -24,6 +24,7 @@
 		4769324D22112BEF00E3E879 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769324C22112BEF00E3E879 /* ScoreController.swift */; };
 		4769324F22112E6600E3E879 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769324E22112E6600E3E879 /* AlertController.swift */; };
 		47FC5A5A2213CE2C00498F7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FC5A592213CE2C00498F7D /* Assets.xcassets */; };
+		8B7C9208235D766F00445177 /* RulesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C9207235D766F00445177 /* RulesVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		4769324C22112BEF00E3E879 /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		4769324E22112E6600E3E879 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		47FC5A592213CE2C00498F7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B7C9207235D766F00445177 /* RulesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			children = (
 				476932432211279800E3E879 /* GameBoardVC.swift */,
 				4769324A2211294F00E3E879 /* LogInVC.swift */,
+				8B7C9207235D766F00445177 /* RulesVC.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				4769323A221124B900E3E879 /* Card.swift in Sources */,
 				476932442211279800E3E879 /* GameBoardVC.swift in Sources */,
 				47693240221125DC00E3E879 /* Score.swift in Sources */,
+				8B7C9208235D766F00445177 /* RulesVC.swift in Sources */,
 				4769323D2211251500E3E879 /* Extensions.swift in Sources */,
 				4769324B2211294F00E3E879 /* LogInVC.swift in Sources */,
 				47693249221128F300E3E879 /* NetworkController.swift in Sources */,
@@ -395,12 +399,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L7AYJDAX2C;
 				INFOPLIST_FILE = "$(SRCROOT)/WhatAreTheOdds/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramcomw.i2v.WhatAreTheOdds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -413,12 +419,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L7AYJDAX2C;
 				INFOPLIST_FILE = "$(SRCROOT)/WhatAreTheOdds/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramcomw.i2v.WhatAreTheOdds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
