@@ -49,6 +49,8 @@ class GameBoardVC: UIViewController{
     
     let networkErrorAlert = AlertController.presentAlertControllerWith(alertTitle: "Error Getting Your Cards", alertMessage: "Ensure you are connected to the internet and try again", dismissActionTitle: "OK")
     
+    var connectionLostAlert: ConnectionLostAlertView?
+    
     // Hides the phone's status bar
     override var prefersStatusBarHidden: Bool {
         return true
@@ -379,6 +381,8 @@ class GameBoardVC: UIViewController{
     func hidePlayersMainCards() {
         self.playerOneCardImage.isHidden = true
         self.playerTwoCardImage.isHidden = true
+        self.playerTwoCardImage.image = backOfCardImage
+        self.playerOneCardImage.image = backOfCardImage
     }
     
     func showPlayersMainCards() {

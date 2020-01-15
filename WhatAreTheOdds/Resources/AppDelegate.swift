@@ -11,13 +11,41 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    private var isOffline = false
+    var reachability: Reachability?
+    
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.reachability = Reachability()
+        
+        reachability?.whenReachable = { reachability in
+            DispatchQueue.main.async() {
+                self.setOfflineView(false)
+            }
+        }
+        reachability?.whenUnreachable = { reachability in
+            DispatchQueue.main.async() {
+                self.setOfflineView(true)
+            }
+        }
+        
+        do{
+            try reachability?.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
         return true
+    }
+    
+    func setOfflineView(_ offline: Bool) {
+        if offline {
+           print("🚠🚠🚠User is off line🚠🚠🚠 🚠")
+        } else {
+            print("🥵\nThe user is online 🥵")
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
