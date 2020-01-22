@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bet" representedClassName="Bet" syncable="YES" codeGenerationType="class">
-        <attribute name="bet" optional="YES" attributeType="String"/>
+        <attribute name="betSaved" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="betString" optional="YES" attributeType="String"/>
     </entity>
     <entity name="PlayerNames" representedClassName="PlayerNames" syncable="YES" codeGenerationType="class">
         <attribute name="playerOne" optional="YES" attributeType="String"/>
         <attribute name="playerTwo" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="Bet" positionX="-54" positionY="9" width="128" height="73"/>
         <element name="PlayerNames" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Bet" positionX="-54" positionY="9" width="128" height="58"/>
     </elements>
 </model>
