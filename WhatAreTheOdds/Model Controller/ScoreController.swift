@@ -10,10 +10,8 @@ import UIKit
 
 class ScoreController {
     
-    // Singleton
     static let shared = ScoreController()
     
-    //Sourece of truth
     var scores = [Score]()
     
     var playerOneScore = 0
@@ -34,11 +32,6 @@ class ScoreController {
             drawButton.setTitle("Draw Again", for: .normal)
         case 1:
             drawButton.setTitle("Draw Again", for: .normal)
-//        case 2:
-//            drawButton.setTitle("Play Again?", for: .normal)
-//        case 3:
-//            drawButton.setTitle("Play Again?", for: .normal)
-
         default:
             break
         }
@@ -51,14 +44,8 @@ class ScoreController {
             drawButton.setTitle("Draw Again", for: .normal)
         case 1:
             drawButton.setTitle("Draw Again", for: .normal)
-//        case 2:
-//            drawButton.setTitle("Play Again?", for: .normal)
-//        case 3:
-//            drawButton.setTitle("Play Again?", for: .normal)
-
         default:
             break
         }
     }
-    
 }

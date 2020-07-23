@@ -18,15 +18,13 @@ class CardController {
     
     typealias FetchImageCompletion = ((UIImage?), NetworkingError?) -> Void
     
-    // MARK: - Need to refactor and make Card? and include error handling
+    // MARK: - Fetch Cards
     static func fetchCards(amount: Int = 2, completion: @escaping FetchCardsCompletion) {
         
         guard let url = baseURL else { completion (nil, NetworkingError.badBaseURL("Bad base URL"))
             return }
         
         let builtURL = url.appendingPathComponent("draw").appendingPathComponent("/")
-        
-        print(builtURL.absoluteURL)
         
         var components = URLComponents(url: builtURL, resolvingAgainstBaseURL: true)
         let drawTwo = URLQueryItem(name: "count", value: "\(amount)")
@@ -35,10 +33,7 @@ class CardController {
         guard let queryURL = components?.url else { return }
         var request = URLRequest(url: queryURL)
         request.httpMethod = NetworkController.HTTPMethod.get.rawValue
-        
-        //print(queryURL.absoluteURL)
-        //https://deckofcardsapi.com/api/deck/new/draw/?count=2
-        //https://deckofcardsapi.com/api/deck/new/draw?count=2
+ 
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 print("\n\n🚀 There was an error with fetching the cards in: \(#file) \n\n \(#function); \n\n\(error); \n\n\(error.localizedDescription) 🚀\n\n")
@@ -54,7 +49,7 @@ class CardController {
                 print("Error decoding object: \(error) \(error.localizedDescription)")
                 completion(nil, .forwardedError(error)); return
             }
-            }.resume()
+        }.resume()
     }
 }
 
@@ -63,7 +58,6 @@ extension CardController {
     static func fetchImagesFor(card: Card, completion: @escaping FetchImageCompletion) {
         guard let url = URL(string: card.image) else { return }
         
-        //print(url.absoluteURL)
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 print("\n\n🚀 There was an error with fetching the image in: \(#file) \n\n \(#function); \n\n\(error); \n\n\(error.localizedDescription) 🚀\n\n")
@@ -71,7 +65,7 @@ extension CardController {
             guard let data = data else { completion(nil, .invalidData("Invalid Data")); return }
             let imageFromWeb = UIImage(data: data)
             completion(imageFromWeb, nil)
-            }.resume()
+        }.resume()
     }
 }
 

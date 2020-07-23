@@ -26,13 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.setOfflineView(false)
             }
         }
+        
         reachability?.whenUnreachable = { reachability in
             DispatchQueue.main.async() {
                 self.setOfflineView(true)
             }
         }
         
-        do{
+        do {
             try reachability?.startNotifier()
         }catch{
             print("could not start reachability notifier")

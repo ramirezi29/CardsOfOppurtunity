@@ -23,7 +23,8 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         setUpTextFields()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        view.backgroundColor = ColorController.gameBoardBackground.value
+//        view.backgroundColor = ColorController.gameBoardBackground.value
+         view.verticleGradient()
         
         tapGestHideKeys = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         

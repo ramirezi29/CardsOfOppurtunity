@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B20F90324C823C700E19BD3 /* GradientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B20F90224C823C700E19BD3 /* GradientController.swift */; };
+		1B8E7C0924C94C67007CC040 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E7C0824C94C67007CC040 /* Player.swift */; };
+		1B8E7C0B24C94CC3007CC040 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E7C0A24C94CC3007CC040 /* PlayerController.swift */; };
+		1B8E7C0D24C94ED5007CC040 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E7C0C24C94ED5007CC040 /* Constants.swift */; };
 		473B9B23221E5B99004BE78F /* IRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473B9B22221E5B99004BE78F /* IRButton.swift */; };
 		473B9B25221E5E52004BE78F /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473B9B24221E5E52004BE78F /* ColorController.swift */; };
 		4769321E221123BC00E3E879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769321D221123BC00E3E879 /* AppDelegate.swift */; };
 		47693223221123BC00E3E879 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47693221221123BC00E3E879 /* Main.storyboard */; };
-		47693226221123BC00E3E879 /* WhatAreTheOdds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47693224221123BC00E3E879 /* WhatAreTheOdds.xcdatamodeld */; };
 		4769322B221123C000E3E879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47693229221123C000E3E879 /* LaunchScreen.storyboard */; };
 		476932382211249B00E3E879 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476932372211249B00E3E879 /* CardController.swift */; };
 		4769323A221124B900E3E879 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47693239221124B900E3E879 /* Card.swift */; };
@@ -28,17 +31,18 @@
 		8B88286923D628470047A85D /* BetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88286823D628470047A85D /* BetVC.swift */; };
 		8B88286B23D629F40047A85D /* BetOptionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88286A23D629F40047A85D /* BetOptionTVCell.swift */; };
 		8BA892B323C58DBB001F1A18 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA892B223C58DBB001F1A18 /* Reachability.swift */; };
-		8BBB073B23CAD7E100C117AB /* LostConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBB073A23CAD7E100C117AB /* LostConnectionView.xib */; };
-		8BBB073E23CAE75100C117AB /* ConnectionLostAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB073D23CAE75100C117AB /* ConnectionLostAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B20F90224C823C700E19BD3 /* GradientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientController.swift; sourceTree = "<group>"; };
+		1B8E7C0824C94C67007CC040 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		1B8E7C0A24C94CC3007CC040 /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
+		1B8E7C0C24C94ED5007CC040 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		473B9B22221E5B99004BE78F /* IRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRButton.swift; sourceTree = "<group>"; };
 		473B9B24221E5E52004BE78F /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		4769321A221123BC00E3E879 /* WhatAreTheOdds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatAreTheOdds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769321D221123BC00E3E879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47693222221123BC00E3E879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		47693225221123BC00E3E879 /* WhatAreTheOdds.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatAreTheOdds.xcdatamodel; sourceTree = "<group>"; };
 		4769322A221123C000E3E879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4769322C221123C000E3E879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		476932372211249B00E3E879 /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
@@ -56,8 +60,6 @@
 		8B88286823D628470047A85D /* BetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetVC.swift; sourceTree = "<group>"; };
 		8B88286A23D629F40047A85D /* BetOptionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetOptionTVCell.swift; sourceTree = "<group>"; };
 		8BA892B223C58DBB001F1A18 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		8BBB073A23CAD7E100C117AB /* LostConnectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LostConnectionView.xib; sourceTree = "<group>"; };
-		8BBB073D23CAE75100C117AB /* ConnectionLostAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLostAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,6 @@
 				4769323B221124FD00E3E879 /* Extension */,
 				4769321D221123BC00E3E879 /* AppDelegate.swift */,
 				4769322C221123C000E3E879 /* Info.plist */,
-				47693224221123BC00E3E879 /* WhatAreTheOdds.xcdatamodeld */,
 				8BA892B223C58DBB001F1A18 /* Reachability.swift */,
 			);
 			path = Resources;
@@ -119,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				4769324E22112E6600E3E879 /* AlertController.swift */,
+				1B8E7C0C24C94ED5007CC040 /* Constants.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -128,6 +130,7 @@
 			children = (
 				47693239221124B900E3E879 /* Card.swift */,
 				4769323F221125DC00E3E879 /* Score.swift */,
+				1B8E7C0824C94C67007CC040 /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			children = (
 				476932372211249B00E3E879 /* CardController.swift */,
 				4769324C22112BEF00E3E879 /* ScoreController.swift */,
+				1B8E7C0A24C94CC3007CC040 /* PlayerController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -207,7 +211,7 @@
 		8BBB073C23CAE6D000C117AB /* UtilityVCs */ = {
 			isa = PBXGroup;
 			children = (
-				8BBB073D23CAE75100C117AB /* ConnectionLostAlertView.swift */,
+				1B20F90224C823C700E19BD3 /* GradientController.swift */,
 			);
 			path = UtilityVCs;
 			sourceTree = "<group>";
@@ -217,7 +221,6 @@
 			children = (
 				47693229221123C000E3E879 /* LaunchScreen.storyboard */,
 				47693221221123BC00E3E879 /* Main.storyboard */,
-				8BBB073A23CAD7E100C117AB /* LostConnectionView.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -280,7 +283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BBB073B23CAD7E100C117AB /* LostConnectionView.xib in Resources */,
 				4769322B221123C000E3E879 /* LaunchScreen.storyboard in Resources */,
 				47FC5A5A2213CE2C00498F7D /* Assets.xcassets in Resources */,
 				47693223221123BC00E3E879 /* Main.storyboard in Resources */,
@@ -294,8 +296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BBB073E23CAE75100C117AB /* ConnectionLostAlertView.swift in Sources */,
-				47693226221123BC00E3E879 /* WhatAreTheOdds.xcdatamodeld in Sources */,
 				473B9B25221E5E52004BE78F /* ColorController.swift in Sources */,
 				476932382211249B00E3E879 /* CardController.swift in Sources */,
 				4769324D22112BEF00E3E879 /* ScoreController.swift in Sources */,
@@ -307,11 +307,15 @@
 				8B88286923D628470047A85D /* BetVC.swift in Sources */,
 				476932442211279800E3E879 /* GameBoardVC.swift in Sources */,
 				47693240221125DC00E3E879 /* Score.swift in Sources */,
+				1B8E7C0D24C94ED5007CC040 /* Constants.swift in Sources */,
 				8B88286B23D629F40047A85D /* BetOptionTVCell.swift in Sources */,
 				8B7C9208235D766F00445177 /* RulesVC.swift in Sources */,
 				4769323D2211251500E3E879 /* Extensions.swift in Sources */,
 				4769324B2211294F00E3E879 /* LogInVC.swift in Sources */,
 				8BA892B323C58DBB001F1A18 /* Reachability.swift in Sources */,
+				1B8E7C0924C94C67007CC040 /* Player.swift in Sources */,
+				1B20F90324C823C700E19BD3 /* GradientController.swift in Sources */,
+				1B8E7C0B24C94CC3007CC040 /* PlayerController.swift in Sources */,
 				47693249221128F300E3E879 /* NetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,19 +520,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		47693224221123BC00E3E879 /* WhatAreTheOdds.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				47693225221123BC00E3E879 /* WhatAreTheOdds.xcdatamodel */,
-			);
-			currentVersion = 47693225221123BC00E3E879 /* WhatAreTheOdds.xcdatamodel */;
-			path = WhatAreTheOdds.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 47693212221123BC00E3E879 /* Project object */;
 }

@@ -14,7 +14,7 @@ struct CardsDictionary: Decodable {
 
 struct Card: Decodable {
     let suit: String
-    let image: String // Note * taking in a string, not an image
+    let image: String 
     let value: String
     
     var rank: Int {

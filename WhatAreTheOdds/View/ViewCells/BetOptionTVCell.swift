@@ -15,6 +15,7 @@ class BetOptionTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        betOptionLabel.text = "Hey"
         
     }
 
