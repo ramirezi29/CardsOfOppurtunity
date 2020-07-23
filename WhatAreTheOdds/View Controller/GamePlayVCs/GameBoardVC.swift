@@ -37,7 +37,12 @@ class GameBoardVC: UIViewController{
     var playerOneName: String?
     var playerTWoName: String?
     var bet: String?
-    var effect: UIVisualEffect!
+    
+    
+    //MARK: -
+    //from Segue
+    var landingPadPlayers: Player?
+    //
     
     // Controll flow properties
     var p1HasSelectedCard = false
@@ -49,29 +54,19 @@ class GameBoardVC: UIViewController{
     
     let networkErrorAlert = AlertController.presentAlertControllerWith(alertTitle: "Error Getting Your Cards", alertMessage: "Ensure you are connected to the internet and try again", dismissActionTitle: "OK")
     
-    var connectionLostAlert: ConnectionLostAlertView?
-    
     // Hides the phone's status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-    //    func presentNetworkErrorAlertFunc() {
-    //
-    //        let networkErrorAlert = AlertController.presentAlertControllerWith(alertTitle: "Error Getting Your Cards", alertMessage: "Ensure you are connected to the internet and try again", dismissActionTitle: "OK")
-    //        let imageView = UIImageView(frame: CGRect(x: 220, y: 10, width: 50, height: 50))
-    //        imageView.image = UIImage(named: "warning")
-    //
-    //        networkErrorAlert.view.addSubview(imageView)
-    //        self.present(networkErrorAlert, animated: true)
-    //    }
+
     
     // MARK: - Life Cyles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // UI
-        view.backgroundColor = ColorController.gameBoardBackground.value
+//        view.backgroundColor = ColorController.gameBoardBackground.value
+        view.verticleGradient()
         
         //Bet View
         betView.layer.cornerRadius = 5
@@ -101,6 +96,7 @@ class GameBoardVC: UIViewController{
         
         //Bet Button UI
         betButtonUI()
+        
         
         //Add guestures
         p1DummyCard1Image.isUserInteractionEnabled = true
@@ -154,12 +150,6 @@ class GameBoardVC: UIViewController{
     // Player 1 Dummy Card Taps
     @objc func p1c1Tapped(card1: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.5) {
-            
-            print("P1C1 Card Tapped")
-            
-            //            print("P1 C1 Y: \(self.p1DummyCard1Image.center.y)")
-            //            print("P1 C1 X: \(self.p1DummyCard1Image.center.x)")
-            
             if self.p1DummyCard1Image.center.y == 61.0 {
                 self.p1HasSelectedCard = false
                 self.updateDrawBttonView()
@@ -182,7 +172,6 @@ class GameBoardVC: UIViewController{
     
     @objc func p1c2Tapped(card2: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.5) {
-            //            print("p1c2Tapped Card Tapped")
             if self.p1DummyCard2Image.center.y == 61.0 {
                 self.p1HasSelectedCard = false
                 self.updateDrawBttonView()
@@ -203,7 +192,6 @@ class GameBoardVC: UIViewController{
     
     @objc func p1c3Tapped(card3: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.5) {
-            //            print("p1c3Tapped Card Tapped")
             if self.p1DummyCard3Image.center.y == 61.0 {
                 self.p1HasSelectedCard = false
                 self.updateDrawBttonView()
@@ -225,8 +213,6 @@ class GameBoardVC: UIViewController{
     // P 2
     @objc func p2c1Tapped(card1: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.5) {
-            //            print("P2 C1 Y: \(self.p2DummyCard1Image.center.y)")
-            //            print("P2 C1 X: \(self.p2DummyCard1Image.center.x)")
             if self.p2DummyCard1Image.center.y == 101.0 {
                 print("P2 has selected a Card: \(self.p2HasSelectedCard)")
                 self.p1HasSelectedCard = false
@@ -311,18 +297,20 @@ class GameBoardVC: UIViewController{
         
         guard let unwrappedPlayerOneName = playerOneName,
             let unwrappedPlayerTwoName = playerTWoName,
-            let betOnTheTable = bet else {return}
+            let betOnTheTable = bet,
+        let magicPlayers = landingPadPlayers else {return}
+         
         
         switch unwrappedPlayerOneName {
         case "":
-            playerNameOneLabel.text = "Player One"
+            playerNameOneLabel.text = "\(magicPlayers.playerOneName) Won"
         default:
             playerNameOneLabel.text = unwrappedPlayerOneName
         }
         
         switch unwrappedPlayerTwoName {
         case "":
-            playerNameTwoLabel.text = "Player Two"
+            playerNameTwoLabel.text = "\(magicPlayers.playerTwoName) Won"
         default:
             playerNameTwoLabel.text = unwrappedPlayerTwoName
         }
@@ -518,10 +506,6 @@ extension GameBoardVC {
                                     
                                     self.playerTwoCardImage.image = playerTwoCardImage
                                 } else {
-                                    // Future Feature wiht Sping Animation
-                                    //self.stopAnimatingCardXX()
-//                                    self.playerCardsBackSide()
-                                    
                                     self.present(self.networkErrorAlert, animated: true, completion: nil)
                                 }
                             }
@@ -564,10 +548,8 @@ extension GameBoardVC {
                         // MARK: - Outcome P2 Won
                         
                     } else if successfullCard![0].rank < successfullCard![1].rank {
-                        //Test Print
-                        //print("👗 Card 0:  \(successfullCard![0].value) < Card 1:  \(successfullCard![1].value)")
                         ScoreController.shared.playerTwoScore += 1
-                        //👗 👗 👗 👗 👗 👗 👗 👗 👗 👗 👗 👗 👗
+                       
                         DispatchQueue.main.async {
                             self.userTwoWonUpdateViewsLabel()
                             
@@ -585,20 +567,10 @@ extension GameBoardVC {
                             self.playerTwoWonChecker()
                         }
                         
-                        print("\nplayer #2 won\n")
-                        print("\nPlayer Two raw score: \(ScoreController.shared.playerTwoScore)\n")
                         
                         // MARK: - Outcome Tie
                         
                     } else if successfullCard![0].rank == successfullCard![1].rank {
-                        
-                        //Test print
-                        //print("🧶Card 0: \(successfullCard![0].value) == Card 1:  \(successfullCard![1].value)")
-                        //ScoreController.shared.playerTwoScore += 0
-                        //ScoreController.shared.playerTwoScore += 0
-                        
-                        // Future Feature wiht Sping Animation
-                        //self.stopAnimatingCardXX()
                         DispatchQueue.main.async {
                             self.drawButton.setTitle("Tie, Draw Again", for: .normal)
                             self.UserOneAndTwoBlackLabelColorUI()
@@ -613,9 +585,6 @@ extension GameBoardVC {
                 // MARK: - if failed fetching two cards
                 
                 DispatchQueue.main.async {
-                    // Future Feature wiht Sping Animation
-                    //self.stopAnimatingCardXX()
-//                    self.playerCardsBackSide()
                     self.present(self.networkErrorAlert, animated: true, completion: nil)
                     
                 }
@@ -796,54 +765,3 @@ extension GameBoardVC {
         self.playerTwoCardImage.image = backOfCardImage
     }
 }
-
-//Future Feature
-// MARK: -  Spin Animation
-
-//extension GameBoardVC {
-//    func startAnimatingCardXX() {
-//        playerOneCardImage.spin()
-//        playerTwoCardImage.spin()
-//    }
-//
-//    func stopAnimatingCardXX() {
-//        playerTwoCardImage.stopRotating()
-//        playerOneCardImage.stopRotating()
-//    }
-//}
-
-// NOTE: - Future Version
-//func playerOneWonBet() {
-//    self.hidePlayerNameLabels()
-//    let unwrappedBetText = self.bet ?? "the odds were aginst you"
-//    switch unwrappedBetText {
-//    case "":
-//        if self.playerOneName == "" {
-//            self.betTextLabel.text = "Player Two lost, the odds were aginst you."
-//        } else {
-//            self.betTextLabel.text = "\(self.playerTWoName ?? "Player Two") \(unwrappedBetText)"
-//        }
-//    default:
-//        break
-//    }
-//}
-//
-//
-//func playerTwoWonBet() {
-//    self.hidePlayerNameLabels()
-//
-//    let unwrappedBetText = self.bet ?? "the odds were aginst you"
-//    switch unwrappedBetText {
-//    case "":
-//        if self.playerOneName == "" {
-//            self.betTextLabel.text = "Player One lost, the odds were aginst you."
-//        } else {
-//            self.betTextLabel.text = "\(self.playerOneName ?? "Player Two") \(unwrappedBetText)"
-//        }
-//    default:
-//        break
-//    }
-//}
-//var prefersStatusBarHidden: Bool {
-//    return false
-//}

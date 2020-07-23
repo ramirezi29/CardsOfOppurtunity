@@ -8,12 +8,11 @@
 
 import UIKit
 
-class BetVC: UIViewController, UITextViewDelegate {
+class BetVC: UIViewController, UITextViewDelegate, UITableViewDelegate {
     
     @IBOutlet weak var instructionHeadingLabel: UILabel!
     @IBOutlet weak var customBetTextView: UITextView!
-    @IBOutlet weak var customBetToggle: UISwitch!
-    @IBOutlet weak var saveInstructionLabel: UILabel!
+  
     @IBOutlet weak var nextButton: IRButton!
     
     var placeholderLabel : UILabel!
@@ -21,16 +20,15 @@ class BetVC: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         view.verticleGradient()
         tapGestHideKeys = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
-        
         setUpBetView()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         if let tapGestHideKeys = tapGestHideKeys {
             view.addGestureRecognizer(tapGestHideKeys)
@@ -48,8 +46,6 @@ class BetVC: UIViewController, UITextViewDelegate {
         customBetTextView.delegate = self
         customBetTextView.returnKeyType = .done
         customBetTextView.layer.cornerRadius = 5
-        // place holder
-        customBetTextView.delegate = self
         placeholderLabel = UILabel()
         placeholderLabel.text = "Example, Take out the trash 🗑'"
         placeholderLabel.font = UIFont.italicSystemFont(ofSize: (customBetTextView.font?.pointSize)!)
@@ -58,7 +54,6 @@ class BetVC: UIViewController, UITextViewDelegate {
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (customBetTextView.font?.pointSize)! / 2)
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.isHidden = !customBetTextView.text.isEmpty
-        
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -73,8 +68,23 @@ class BetVC: UIViewController, UITextViewDelegate {
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.segueKey {
+            
+            guard let destinationVC = segue.destination as? GameBoardVC else { return }
+            
+            let playerNames = PlayerController.shared.players
+            
+            destinationVC.landingPadPlayers = playerNames
+            
+        }
+    }
+    
     
     @objc func hideKeyboard(_ sender: UITapGestureRecognizer) {
         customBetTextView.resignFirstResponder()
+    }
+    
+    @IBAction func toGameButtonTapped(_ sender: IRButton) {
     }
 }
